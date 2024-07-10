@@ -15,7 +15,7 @@ const TeacherLand = () => {
   const fetchTeacherData = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/teachers/getTeacherData/${teacherId}`
+        `https://lms-backend-1-xmc6.onrender.com/teachers/getTeacherData/${teacherId}`
       );
       setTeacherName(response.data.name);
       setTeacherData({

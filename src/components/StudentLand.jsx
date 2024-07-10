@@ -16,11 +16,11 @@ const StudentLand = () => {
     const fetchData = async () => {
       try {
         // Fetch student data
-        const studentResponse = await axios.get(`http://localhost:5000/students/getStudentData/${studentId}`);
+        const studentResponse = await axios.get(`https://lms-backend-1-xmc6.onrender.com/students/getStudentData/${studentId}`);
         setStudent(studentResponse.data);
 
         // Fetch all courses
-        const coursesResponse = await axios.get('http://localhost:5000/courses/getallcourses');
+        const coursesResponse = await axios.get('https://lms-backend-1-xmc6.onrender.com/courses/getallcourses');
         console.log({coursesResponse});
         setCourses(coursesResponse.data);
       } catch (error) {
