@@ -33,7 +33,7 @@ const StudentLand = () => {
 
   const enrollInCourse = async (courseId) => {
     try {
-      const response = await axios.post(`http://localhost:5000/students/enroll-course/${studentId}/${courseId}`);
+      const response = await axios.post(`https://lms-backend-1-xmc6.onrender.com/students/enroll-course/${studentId}/${courseId}`);
       toast.success("Course successfully enrolled")
       console.log(response.data); // Log the response for debugging
       // Optionally, show a toast or update the UI to indicate successful enrollment

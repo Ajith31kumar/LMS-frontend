@@ -59,7 +59,7 @@ const RegisterPage = () => {
             highestQualification: teacherqualification,
         };
     
-        axios.post("http://localhost:5000/teachers/teacher_add", data)
+        axios.post("https://lms-backend-1-xmc6.onrender.com/teachers/teacher_add", data)
           .then((res) => {
             if (res.status === 201) {
             } else {

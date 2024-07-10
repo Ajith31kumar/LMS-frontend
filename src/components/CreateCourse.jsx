@@ -25,7 +25,7 @@ const CreateCourse = () => {
   
       console.log("Data being sent to the server:", requestData);
   
-      const response = await axios.post(`http://localhost:5000/courses/create-course/${teacherId}`, requestData);
+      const response = await axios.post(`https://lms-backend-1-xmc6.onrender.com/courses/create-course/${teacherId}`, requestData);
   
       console.log("Full response from the server:", response); // Log the full response
   

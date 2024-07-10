@@ -35,7 +35,7 @@ const StudentEnrolled = () => {
   const deleteCourse = async (courseId) => {
     try {
       // Make a DELETE request to the server endpoint
-      await axios.delete(`http://localhost:5000/delete-enrolled-course/${studentId}/${courseId}`);
+      await axios.delete(`https://lms-backend-1-xmc6.onrender.com/delete-enrolled-course/${studentId}/${courseId}`);
 
       // After successful deletion, update the state to reflect the changes
       setEnrolledCourses((prevCourses) => prevCourses.filter((course) => course._id !== courseId));

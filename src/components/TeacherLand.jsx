@@ -52,7 +52,7 @@ const TeacherLand = () => {
 
   const handleDeleteCourse = async (courseId) => {
     try {
-      await axios.delete(`http://localhost:5000/teachers/deleteCourse/${teacherId}/${courseId}`);
+      await axios.delete(`https://lms-backend-1-xmc6.onrender.com/teachers/deleteCourse/${teacherId}/${courseId}`);
       // After successful deletion, show success toast
       toast.success("Course deleted successfully");
       // Reload the teacher data after deletion

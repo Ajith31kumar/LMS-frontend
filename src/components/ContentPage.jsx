@@ -18,7 +18,7 @@ function ContentPage() {
     const fetchCourseDetails = async () => {
       try {
         // const response = await axios.get(`http://localhost:5000/getCourseDetails/${courseId}`);
-        const response = await axios.get(`http://localhost:5000/courses/getCourseDetails/${courseId}`);
+        const response = await axios.get(`https://lms-backend-1-xmc6.onrender.com/courses/getCourseDetails/${courseId}`);
         setCourseDetails(response.data);
         console.log({response});
       } catch (error) {

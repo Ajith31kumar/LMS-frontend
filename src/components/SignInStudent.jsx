@@ -13,7 +13,7 @@ const SignInStudent = () => {
     try {
       console.log(email);
       console.log(password);
-      const response = await axios.post('http://localhost:5000/students/student_login', {
+      const response = await axios.post('https://lms-backend-1-xmc6.onrender.com/students/student_login', {
         email,
         password,
       });

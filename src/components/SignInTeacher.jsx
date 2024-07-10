@@ -13,7 +13,7 @@ const SignInTeacher = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:5000/teachers/teacher_login', {
+      const response = await axios.post('https://lms-backend-1-xmc6.onrender.com/teachers/teacher_login', {
         email,
         password,
       });
