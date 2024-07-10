@@ -1,11 +1,18 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useHistory } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
 const RegisterPage = () => {
   const [isStudentFormOpen, setStudentFormOpen] = useState(true);
   const [isTeacherFormOpen, setTeacherFormOpen] = useState(false);
-  const history = useHistory(); // Initialize useHistory for navigation
+  const [studentname, setStudentName] = useState("");
+  const [studentemail, setStudentEmail] = useState("");
+  const [studentpass, setStudentPass] = useState("");
+  const [teachername, setTeacherName] = useState("");
+  const [teacheremail, setTeacherEmail] = useState("");
+  const [teacherpass, setTeacherPass] = useState("");
+  const [teacherqualification, setTeacherQualification] = useState("");
+  const [registrationSuccessful, setRegistrationSuccessful] = useState(false);
 
   const openStudentForm = () => {
     setStudentFormOpen(true);
@@ -17,14 +24,6 @@ const RegisterPage = () => {
     setStudentFormOpen(false);
   };
 
-  const [studentname, setStudentName] = useState("");
-  const [studentemail, setStudentEmail] = useState("");
-  const [studentpass, setStudentPass] = useState("");
-  const [teachername, setTeacherName] = useState("");
-  const [teacheremail, setTeacherEmail] = useState("");
-  const [teacherpass, setTeacherPass] = useState("");
-  const [teacherqualification, setTeacherQualification] = useState("");
-
   const handleStudentSubmit = () => {
     const data = {
       username: studentname,
@@ -35,8 +34,7 @@ const RegisterPage = () => {
     axios.post("https://lms-backend-1-xmc6.onrender.com/students/student_add", data)
       .then((res) => {
         if (res.status === 201) {
-          // Redirect to sign-in page for students after successful registration
-          history.push('/open-student');
+          setRegistrationSuccessful(true);
         } else {
           return Promise.reject();
         }
@@ -57,8 +55,7 @@ const RegisterPage = () => {
     axios.post("https://lms-backend-1-xmc6.onrender.com/teachers/teacher_add", data)
       .then((res) => {
         if (res.status === 201) {
-          // Redirect to sign-in page for teachers after successful registration
-          history.push('/open-teacher');
+          setRegistrationSuccessful(true);
         } else {
           return Promise.reject();
         }
@@ -68,19 +65,36 @@ const RegisterPage = () => {
       });
   };
 
+  if (registrationSuccessful) {
+    return (
+      <div className="text-white text-lg">
+        {isStudentFormOpen && (
+          <div>
+            Student registered successfully! Please proceed to <Navigate to="/open-student" />.
+          </div>
+        )}
+        {isTeacherFormOpen && (
+          <div>
+            Teacher registered successfully! Please proceed to <Navigate to="/open-teacher" />.
+          </div>
+        )}
+      </div>
+    );
+  }
+
   return (
     <div className="flex items-center justify-center min-h-screen bg-zinc-900 p-6">
       <div className="card shadow-2xl h-1/2 md:w-1/2 xl:w-1/3 bg-zinc-800">
         <div className="w-full">
           <button onClick={openStudentForm} className="active:bg-zinc-900 h-14 w-1/2 h border-2 text-white border-zinc-900 text-center xl:text-2xl md:text-xl">
-            Student
+            Student Registration
           </button>
           <button onClick={openTeacherForm} className="active:bg-zinc-900 h-14 w-1/2 border-2 text-white border-zinc-900 text-center xl:text-2xl md:text-xl">
-            Teacher
+            Teacher Registration
           </button>
         </div>
         <div className="form-container p-6">
-          {isStudentFormOpen && (
+          {isStudentFormOpen && !registrationSuccessful && (
             <div className="form student-form">
               <h2 className="text-white text-md mb-8">Student Registration</h2>
               <form onSubmit={handleStudentSubmit}>
@@ -91,7 +105,7 @@ const RegisterPage = () => {
               </form>
             </div>
           )}
-          {isTeacherFormOpen && (
+          {isTeacherFormOpen && !registrationSuccessful && (
             <div className="form teacher-form">
               <h2 className="text-white text-md mb-8">Teacher Registration</h2>
               <form onSubmit={handleTeacherSubmit}>
