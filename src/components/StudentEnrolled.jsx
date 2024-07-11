@@ -16,7 +16,7 @@ const StudentEnrolled = () => {
         setStudent(studentResponse.data);
 
         // Fetch enrolled courses
-        const enrolledCoursesResponse = await axios.get(`https://lms-backend-1-xmc6.onrender.com/courses/enrolled-courses/${studentId}`);
+        const enrolledCoursesResponse = await axios.get(`https://lms-backend-1-xmc6.onrender.com/courses/enrolled-course/${studentId}`);
         setEnrolledCourses(enrolledCoursesResponse.data);
       } catch (error) {
         console.error('Error fetching data', error);
