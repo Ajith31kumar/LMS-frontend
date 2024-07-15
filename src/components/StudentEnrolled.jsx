@@ -10,14 +10,17 @@ const StudentEnrolled = () => {
 
   useEffect(() => {
     const fetchData = async () => {
+      console.log(`Fetching courses for student ID: ${studentId}`);
       try {
         // Fetch student data
         const studentResponse = await axios.get(`https://lms-backend-1-xmc6.onrender.com/students/getStudentData/${studentId}`);
         setStudent(studentResponse.data);
+        console.log(`Fetching courses for student ID: ${studentId}`);
 
         // Fetch enrolled courses
-        const enrolledCoursesResponse = await axios.get(`https://lms-backend-1-xmc6.onrender.com/courses/enrolled-course/${studentId}`);
+        const enrolledCoursesResponse = await axios.get(`https://lms-backend-1-xmc6.onrender.com/students/courses/enrolled-courses/${studentId}`);
         setEnrolledCourses(enrolledCoursesResponse.data);
+        console.log(`Fetching courses for student ID: ${studentId}`);
       } catch (error) {
         console.error('Error fetching data', error);
       }

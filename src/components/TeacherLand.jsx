@@ -37,6 +37,7 @@ const TeacherLand = () => {
   const handleAddCourse = () => {
     navigate(`/course-create/${teacherId}`);
   };
+  
 
   const handleViewNotes = (courseId) => {
     // Your existing code for viewing notes
